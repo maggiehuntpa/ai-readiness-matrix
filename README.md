@@ -1,7 +1,7 @@
-###AI Readiness Quiz
-#Tool for prospective clients to assess their AI ambitions.
+# AI Readiness Matrix
+_Tool for prospective clients to assess their AI ambitions._
 Proposal: Build this into a web app onto PA’s website; share on Linkedin and in publications widely/ Integrate into ‘product-first’ mindset; link to relevant Partner contact details on results page.
-#Section 1 – is your organisation ready?
+## Section 1 – is your organisation ready?
 1.	How would you rate your organisation's data?
 •	1: All over the place, disorganised, and in need of some management
 •	10: Secure, organised, accessible and clean
@@ -20,7 +20,7 @@ Proposal: Build this into a web app onto PA’s website; share on Linkedin and i
 
 
 
-#Section 2 – is your solution appropriate?
+## Section 2 – is your solution appropriate?
 1.	How complex would you say your proposed solution is?
 •	1: Simple: there is a clear path from trigger to result, with minimal decision points
 •	10: There are a number of decision points, broad-ranging data to consider, and nuances to its output
@@ -37,7 +37,7 @@ Proposal: Build this into a web app onto PA’s website; share on Linkedin and i
 •	1: Challenging - the data and associated architecture requires cleansing and re-work before we can deploy such a solution
 •	10: As easy as possible - the architecture, data and other facilities already exist for similar solutions
 
-#Results
+## Results
 Add up your scores (from 1-10) for each question. Possible score for each section is 50.
 
 If you scored…
