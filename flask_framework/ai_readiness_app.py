@@ -1,11 +1,9 @@
 from flask import (
     Flask,
-    render_template,
-    request,
-    jsonify,
-    Response,
-    redirect
+    render_template
 ) 
+
+import os
 
 app = Flask("ai-readiness") 
 
