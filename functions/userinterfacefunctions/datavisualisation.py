@@ -4,7 +4,8 @@ class DataVisualisaton():
 
     def plot_chart(scores):
         fig = go.Figure()
-        categories = ['1','2', '3', '4', '5', '6', '7', '8', '9', '10']
+        categories = ['Data Ready','Data Architecture', 'Budget', 'Culture', 'Skills', 'Complex Task', 'Scaled Benefit', 'Adding Value', 'Solution Longevity', 'Technical Readiness']
+        blanks = [0,0,0,0,0]
 
 
         organization_scores = scores[:len(scores)//2]
@@ -12,19 +13,13 @@ class DataVisualisaton():
 
 
         fig.add_trace(go.Scatterpolar(
-            r=organization_scores,
+            r=scores,
             theta=categories,
-            fill='toself',
-            name='Organizational Readiness'
+            fill='tonext',
+            name='Score',
+            hoverinfo='none'
         ))
 
-       
-        fig.add_trace(go.Scatterpolar(
-        r=solution_scores,
-        theta=categories,
-        fill='toself',
-        name='Solution Readiness'
-    ))
         
         fig.update_layout(
         polar=dict(
@@ -35,6 +30,6 @@ class DataVisualisaton():
         showlegend=False
         )
 
-        graph = fig.to_html()
+        graph = fig.to_html(full_html=False)
 
         return graph

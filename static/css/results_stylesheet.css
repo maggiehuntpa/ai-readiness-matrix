@@ -1,0 +1,13 @@
+
+:root {
+    --ingenuity-red: #ff0033;
+      --pa-steel: #85a2c7d4;
+      --white: white;
+  }
+  
+#results {
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    justify-self: center;
+}

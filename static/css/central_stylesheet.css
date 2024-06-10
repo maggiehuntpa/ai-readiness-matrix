@@ -1,0 +1,24 @@
+
+:root {
+    --ingenuity-red: #ff0033;
+      --pa-steel: #85a2c7d4;
+      --white: white;
+  }
+    
+  body {
+      justify-items: center;
+      width: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+        overflow-x: hidden;
+    }
+  
+
+.submit-button {
+        margin: 20px;
+        padding: 20px;
+        width: 250px;
+        background-color: var(--ingenuity-red);
+        border-radius: 10px;
+        color: var(--white);
+        font-size: large;
+    }

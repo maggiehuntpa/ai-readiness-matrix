@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-
+    <head>
+        <link rel="stylesheet" href="../static/css/central_stylesheet.css">
+        <link rel="stylesheet" href="../static/css/results_stylesheet.css">
+        </head>
 <nav class="navbar navbar-expand-md">
     <div class="container-fluid px-0">
         <!-- title -->
@@ -94,7 +97,21 @@
         </div>
     </div>
 </nav>
-<body>
-    {{graph}}
+<body><div id="results">
+    <div>{{graph|safe}}</div>
+    <div><h2>Scores</h2>
+    <h3>Overall Score: {{average_score}}%</h3><p>{{overall_message}}</p>
+    <h3>Organizational Score: {{average_score_organization}}%</h3><p>{{overall_message_organization}}</p>
+    <h3>Solution Score: {{average_score_solution}}%</h3><p>{{overall_message_solution}}</p></div>
+
+    <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+    <script type="IN/Share" data-url="https://www.linkedin.com"></script>
+
+    <div><h2>Get in Touch</h2><p>{{get_in_touch}}</p></div>
+
+    <form id="download-report" action="/report" method="post">
+
+        <input class="submit-button" type="submit" value="Download my report"></div>
+    </form>
 </body>
 </html>
