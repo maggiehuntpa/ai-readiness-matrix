@@ -3,18 +3,31 @@ from flask import (
     render_template,
     request
 ) 
-
+import json
 import os
+from google.cloud import bigquery
+
+# bigquery_key = os.getenv("BIGQUERY_KEY")
+# biquery_dataset=os.getenv("BIGQUERY_DATASET")
 
 from functions.userinterfacefunctions import scoring as sc, datavisualisation, process_responses, resultsdoc
 
 app = Flask("ai-readiness") 
+client = bigquery.Client()
 
 # index - quiz
 @app.route("/")
 def index():
     print('index')
-    return render_template('index.html')
+    question_query_SQL = "SELECT * FROM `ai-readiness-matrix.matrixdata.questions`"
+    question_query_job = client.query(question_query_SQL)
+    results = question_query_job.result()
+    question_dict = {}
+    for i in results:
+        print(i[0])
+        question_dict[i[0]] = [i[1], i[2], i[3], i[4], i[5]]
+    
+    return render_template('index.html', questions_list=question_dict)
 
 # results
 @app.route("/results", methods=['POST'])

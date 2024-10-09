@@ -99,69 +99,70 @@
     </div>
 </nav>
 <body>
+    <!-- please note that the qesutions list uses list so you should access the individual column values via indices. this is more energy efficient for data processing. [0] is the question, [1] is the theme, [2] is the 0 score, [3] is the 10/10 score, [4] is the half of the quiz it is -->
     <div><h2>PA Consulting's AI Readiness Matrix</h2><p>Tool for prospective clients to assess their AI ambitions.</p></div>
     <form id="questions" action="/results" method="post">
         <h2>Your Organization</h2>
         <div class="question">
-            <label class="question-label" for="q1">How would you rate your organisation's data?</label><div class="slider-and-sliderlabel">
-            <div class="sliderlabel">All over the place, disorganised, and in need of some management.</div>
+            <label class="question-label" for="q1">{{questions_list.1[0]}}</label><div class="slider-and-sliderlabel">
+            <div class="sliderlabel">{{questions_list.1[2]}}</div>
             <input type="range" id="q1" name="q1" min="0" max="10" value="5" class="slider" step="0.1">
-            <div class="sliderlabel">Secure, organised, accessible and clean.</div>
+            <div class="sliderlabel">{{questions_list.1[3]}}</div>
         </div></div>
         <div class="question">
-            <label class="question-label" for="q2">How would you rate your organisation's data architecture?</label><div class="slider-and-sliderlabel">
-            <div class="sliderlabel">Opaque and disjointed.</div>
+            <label class="question-label" for="q2">{{questions_list.2[0]}}</label><div class="slider-and-sliderlabel">
+            <div class="sliderlabel">{{questions_list.2[2]}}</div>
             <input type="range" id="q2" name="q2" min="0" max="10" value="5" class="slider" step="0.1">
-            <div class="sliderlabel">Logical, secure, transparent and collaborative.</div>
+            <div class="sliderlabel">{{questions_list.2[3]}}</div>
         </div></div>
         <div class="question">
-            <label class="question-label" for="q3">How would you rate your organisation's Digital & Data budget?</label><div class="slider-and-sliderlabel">
-            <div class="sliderlabel">Limited and limiting.</div>
+            <label class="question-label" for="q3">{{questions_list.3[0]}}</label><div class="slider-and-sliderlabel">
+            <div class="sliderlabel">{{questions_list.3[2]}}</div>
             <input type="range" id="q3" name="q3" min="0" max="10" value="5" class="slider" step="0.1">
-            <div class="sliderlabel">Money is no object.</div>
+            <div class="sliderlabel">{{questions_list.3[3]}}</div>
         </div></div>
         <div class="question">
-            <label class="question-label" for="q4">How would you rate your organisation's cultural readiness for AI technology?</label><div class="slider-and-sliderlabel">
-            <div class="sliderlabel">We are generally resistant to change and prefer to work with proven technology and processes consistently.</div>
+            <label class="question-label" for="q4">{{questions_list.4[0]}}</label><div class="slider-and-sliderlabel">
+            <div class="sliderlabel">{{questions_list.4[2]}}</div>
             <input type="range" id="q4" name="q4" min="0" max="10" value="5" class="slider" step="0.1">
-            <div class="sliderlabel">Actively pro-AI: everyone is excited, we use new technology all the time, and everyone is very well-informed about the risks, costs and benefits.</div>
+            <div class="sliderlabel">{{questions_list.4[3]}}</div>
         </div></div>
         <div class="question">
-            <label class="question-label" for="q5">How educated and engaged are your wider team when it comes to working with Big Data, AI and other new technologies?</label><div class="slider-and-sliderlabel">
-            <div class="sliderlabel">We are aware of the opportunities they present.</div>
+            <label class="question-label" for="q5">{{questions_list.5[0]}}</label><div class="slider-and-sliderlabel">
+            <div class="sliderlabel">{{questions_list.5[2]}}</div>
             <input type="range" id="q5" name="q5" min="0" max="10" value="5" class="slider" step="0.1">
-            <div class="sliderlabel">We regularly, openly and critically discuss the ethical implications, security implications and other costs/benefits and risk relating to new technology.</div>
+            <div class="sliderlabel">{{questions_list.5[3]}}</div>
         </div></div>
         <h2>Your Solution</h2>
         <div class="question">
-            <label class="question-label" for="q6">How complex would you say your proposed solution is?</label><div class="slider-and-sliderlabel">
-            <div class="sliderlabel">Simple: there is a clear path from trigger to result, with minimal decision points.</div>
+            <label class="question-label" for="q6">{{questions_list.6[0]}}</label><div class="slider-and-sliderlabel">
+            <div class="sliderlabel">{{questions_list.6[2]}}</div>
             <input type="range" id="q6" name="q6" min="0" max="10" value="5" class="slider" step="0.1">
-            <div class="sliderlabel">There are a number of decision points, broad-ranging data to consider, and nuances to its output.</div>
+            <div class="sliderlabel">{{questions_list.6[3]}}</div>
         </div></div>
         <div class="question">
-            <label class="question-label" for="q7">How much analysis is required to produce the output?</label><div class="slider-and-sliderlabel">
-            <div class="sliderlabel">Minimal - binary decisions at every step, based on simple conditions.</div>
+            <label class="question-label" for="q7">{{questions_list.7[0]}}</label><div class="slider-and-sliderlabel">
+            <div class="sliderlabel">{{questions_list.7[2]}}</div>
             <input type="range" id="q7" name="q7" min="0" max="10" value="5" class="slider" step="0.1">
-            <div class="sliderlabel">Huge swathes of data must be processed to produce predictions, and evaluate them before we action them.</div>
+            <div class="sliderlabel">{{questions_list.7[3]}}</div>
         </div></div>
         <div class="question">
-            <label class="question-label" for="q8">How much more effective would AI be at delivering this result, than a human (or human team) of the same cost?</label><div class="slider-and-sliderlabel">
-            <div class="sliderlabel">Neither faster, more reliable nor more accurate.</div>
+            <label class="question-label" for="q8">{{questions_list.8[0]}}</label><div class="slider-and-sliderlabel">
+            <div class="sliderlabel">{{questions_list.8[2]}}</div>
             <input type="range" id="q8" name="q8" min="0" max="10" value="5" class="slider" step="0.1">
-            <div class="sliderlabel">Significantly faster, more reliable and more accurate.</div>
+            <div class="sliderlabel">{{questions_list.8[3]}}</div>
         </div></div>
         <div class="question">
-            <label class="question-label" for="q9">How would you rate the longevity of the solution and its benefits?</label><div class="slider-and-sliderlabel">
-            <div class="sliderlabel">Short-term - an immediate win for an immediate problem.</div>
+            <label class="question-label" for="q9">{{questions_list.9[0]}}</label><div class="slider-and-sliderlabel">
+            <div class="sliderlabel">{{questions_list.9[2]}}</div>
             <input type="range" id="q9" name="q9" min="0" max="10" value="5" class="slider" step="0.1">
-            <div class="sliderlabel">Long-term - there is scope for the solution to address and evolve alongside a permanent challenge.</div>
+            <div class="sliderlabel">{{questions_list.9[3]}}</div>
         </div></div>
         <div class="question">
-            <label class="question-label" for="q10">How easy will the solution be to integrate into existing platforms and technologies?</label><div class="slider-and-sliderlabel">
-            <div class="sliderlabel">Challenging - the data and associated architecture requires cleansing and re-work before we can deploy such a solution.</div>
+            <label class="question-label" for="q10">{{questions_list.10[0]}}</label><div class="slider-and-sliderlabel">
+            <div class="sliderlabel">{{questions_list.10[2]}}</div>
             <input type="range" id="q10" name="q10" min="0" max="10" value="5" class="slider" step="0.1">
-            <div class="sliderlabel">As easy as possible - the architecture, data and other facilities already exist for similar solutions.</div>
+            <div class="sliderlabel">{{questions_list.10[3]}}</div>
         </div></div>
 
         <label for="email">Enter your email to receive a pdf report</label><br>
