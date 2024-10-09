@@ -12,6 +12,13 @@ class DatabasePull():
 
         return question_dict
     
+    def pull_topics():
+        question_dict = DatabasePull.pull_questions()
+        topics_list = []
+        for t, q in question_dict.items():
+                topics_list.append(q[1].title())
+        return topics_list
+    
 
     def pull_experts():
 
@@ -20,19 +27,22 @@ class DatabasePull():
         expert_results=expert_query_job.result()
         experts_dict = {}
         for e in expert_results:
-            experts_dict[e[0]] = [e[1], e[2], e[3], e[4], e[5]]
+            experts_dict[e[0]] = [e[1], e[2], e[3], e[4], e[5], e[6]]
 
         return experts_dict
     
+
     def pull_topic_contacts(weakest_q):
         experts_dict = DatabasePull.pull_experts()
         topics_query_SQL = "SELECT * FROM `ai-readiness-matrix.matrixdata.topics`"
         topics_query_job = client.query(topics_query_SQL)
         topics_results = topics_query_job.result()
+
         topics_dict_unsorted = {}
         for t in topics_results:
             topics_dict_unsorted[str(t[0])] = [t[1], experts_dict[t[2]], experts_dict[t[3]]]
         topics_dict = dict(sorted(topics_dict_unsorted.items()))
         topic_contacts = topics_dict[weakest_q]
-   
+        print(topic_contacts)
         return topic_contacts
+    

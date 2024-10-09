@@ -1,10 +1,11 @@
 import plotly.graph_objects as go
+from ..datafunctions.database_pull import DatabasePull as db
 
 class DataVisualisaton():
 
     def plot_chart(scores):
         fig = go.Figure()
-        categories = ['Data Ready','Data Architecture', 'Budget', 'Culture', 'Skills', 'Complex Task', 'Scaled Benefit', 'Adding Value', 'Solution Longevity', 'Technical Readiness']
+        categories = db.pull_topics()
         blanks = [0,0,0,0,0]
 
 

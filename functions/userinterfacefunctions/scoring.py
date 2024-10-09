@@ -36,14 +36,13 @@ class Scoring():
         worst_score_q = str(scores.index(min(scores))+1) 
         return worst_score_q
     
-    def get_in_touch(scores):
+    def experts(scores):
         #todo - top 2 experts for lowest scores, add to content
         worst_question = Scoring.worst_question(scores)
         experts = db.pull_topic_contacts(worst_question)
-        print(experts)
-        topic = experts[0]
-        leader = experts[1]
-        supporter = experts[2]
-        get_in_touch = f'Need some support on {topic}? Contact our experts {leader[0]}, {leader[2]} and {supporter[0]}, {supporter[2]}'
-
-        return get_in_touch
+        experts[0] = experts[0].title()
+        # topic = experts[0]
+        # leader = experts[1]
+        # supporter = experts[2]
+        
+        return experts

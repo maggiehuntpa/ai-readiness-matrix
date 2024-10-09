@@ -35,7 +35,11 @@ def results():
     average_score_organization, overall_message_organization = sc.Scoring.average_score_organization(scores)
     
     graph = dv.DataVisualisaton.plot_chart(scores)
-    get_in_touch = sc.Scoring.get_in_touch(scores)
+    experts = sc.Scoring.experts(scores)
+         # topic = experts[0]
+        # leader = experts[1]
+        # supporter = experts[2]
+        
     doc = rd.ResultsDoc()
     return render_template('results.html', graph=graph, 
                            average_score=average_score, 
@@ -44,7 +48,7 @@ def results():
                            overall_message_organization=overall_message_organization, 
                            average_score_solution=average_score_solution,
                            overall_message_solution=overall_message_solution,
-                           get_in_touch = get_in_touch)
+                          experts=experts)
 
 # about
 @app.route("/about")
