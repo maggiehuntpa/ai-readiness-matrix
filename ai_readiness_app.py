@@ -5,40 +5,38 @@ from flask import (
 ) 
 import json
 import os
-from google.cloud import bigquery
 
-# bigquery_key = os.getenv("BIGQUERY_KEY")
-# biquery_dataset=os.getenv("BIGQUERY_DATASET")
+from functions.datafunctions.database_pull import *
 
-from functions.userinterfacefunctions import scoring as sc, datavisualisation, process_responses, resultsdoc
+
+from functions.userinterfacefunctions import scoring as sc, datavisualisation as dv, process_responses as proc, resultsdoc as rd
 
 app = Flask("ai-readiness") 
-client = bigquery.Client()
+
 
 # index - quiz
 @app.route("/")
 def index():
-    print('index')
-    question_query_SQL = "SELECT * FROM `ai-readiness-matrix.matrixdata.questions`"
-    question_query_job = client.query(question_query_SQL)
-    results = question_query_job.result()
-    question_dict = {}
-    for i in results:
-        print(i[0])
-        question_dict[i[0]] = [i[1], i[2], i[3], i[4], i[5]]
+
+    questions_list = DatabasePull.pull_questions()
     
-    return render_template('index.html', questions_list=question_dict)
+    return render_template('index.html', questions_list=questions_list)
 
 # results
 @app.route("/results", methods=['POST'])
 def results():
     print('results')
-    scores = process_responses.ProcessResponses.process_responses()
+    
+    scores = proc.ProcessResponses.process_responses()
+    print(scores)
+
     average_score, overall_message = sc.Scoring.average_score(scores)
     average_score_solution, overall_message_solution = sc.Scoring.average_score_solution(scores)
     average_score_organization, overall_message_organization = sc.Scoring.average_score_organization(scores)
-    graph = datavisualisation.DataVisualisaton.plot_chart(scores)
-    get_in_touch = sc.Scoring.get_in_touch()
+    
+    graph = dv.DataVisualisaton.plot_chart(scores)
+    get_in_touch = sc.Scoring.get_in_touch(scores)
+    doc = rd.ResultsDoc()
     return render_template('results.html', graph=graph, 
                            average_score=average_score, 
                            overall_message = overall_message,

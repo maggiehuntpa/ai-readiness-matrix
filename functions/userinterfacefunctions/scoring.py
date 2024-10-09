@@ -32,11 +32,18 @@ class Scoring():
         
         return average_score_solution, overall_message_solution
     
-    def get_in_touch():
+    def worst_question(scores):
+        worst_score_q = str(scores.index(min(scores))+1) 
+        return worst_score_q
+    
+    def get_in_touch(scores):
         #todo - top 2 experts for lowest scores, add to content
-       
-        experts = db.pull_experts()
-
-        get_in_touch = f'contact us! maggie.hunt@paconsulting.com and {experts}'
+        worst_question = Scoring.worst_question(scores)
+        experts = db.pull_topic_contacts(worst_question)
+        print(experts)
+        topic = experts[0]
+        leader = experts[1]
+        supporter = experts[2]
+        get_in_touch = f'Need some support on {topic}? Contact our experts {leader[0]}, {leader[2]} and {supporter[0]}, {supporter[2]}'
 
         return get_in_touch
