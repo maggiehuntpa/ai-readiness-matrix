@@ -12,7 +12,9 @@
         overflow-x: hidden;
     }
   
-
+.header-div {
+        padding-left: 0vw;
+    }
 .submit-button {
         margin: 20px;
         padding: 20px;

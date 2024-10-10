@@ -1,9 +1,11 @@
 from google.cloud import bigquery
 client = bigquery.Client()
 
+gcloud_project_query_start = "SELECT * FROM `ai-readiness-matrix.matrixdata."
+
 class DatabasePull():
     def pull_questions():
-        question_query_SQL = "SELECT * FROM `ai-readiness-matrix.matrixdata.questions`"
+        question_query_SQL = f"{gcloud_project_query_start}questions`"
         question_query_job = client.query(question_query_SQL)
         question_results = question_query_job.result()
         question_dict = {}
@@ -22,7 +24,7 @@ class DatabasePull():
 
     def pull_experts():
 
-        expert_query_SQL = "SELECT * FROM `ai-readiness-matrix.matrixdata.experts`"
+        expert_query_SQL = f"{gcloud_project_query_start}experts`"
         expert_query_job = client.query(expert_query_SQL)
         expert_results=expert_query_job.result()
         experts_dict = {}
@@ -34,7 +36,7 @@ class DatabasePull():
 
     def pull_topic_contacts(weakest_q):
         experts_dict = DatabasePull.pull_experts()
-        topics_query_SQL = "SELECT * FROM `ai-readiness-matrix.matrixdata.topics`"
+        topics_query_SQL = f"{gcloud_project_query_start}topics`"
         topics_query_job = client.query(topics_query_SQL)
         topics_results = topics_query_job.result()
 
