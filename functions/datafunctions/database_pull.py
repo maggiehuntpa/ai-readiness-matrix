@@ -43,6 +43,6 @@ class DatabasePull():
             topics_dict_unsorted[str(t[0])] = [t[1], experts_dict[t[2]], experts_dict[t[3]]]
         topics_dict = dict(sorted(topics_dict_unsorted.items()))
         topic_contacts = topics_dict[weakest_q]
-        print(topic_contacts)
+
         return topic_contacts
     

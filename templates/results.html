@@ -62,38 +62,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                </li>
-                <!-- dropdown -->
-                <li class="nav-item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                    >
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li>
-                            <a class="dropdown-item" href="#">Another action</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider" />
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </li>
-                    </ul>
-                </li>
+                <li class="nav-item"></li>
+                <a class="nav-link" aria-current="page" href="https://www.paconsulting.com/" target="_blank">PA Consulting</a>
+            </li>
             </ul>
         </div>
     </div>
@@ -101,25 +74,25 @@
 <body><div id="results">
     <div>{{graph|safe}}</div>
     <div><h2>Scores</h2>
-    <h3>Overall Score: {{average_score}}%</h3><p>{{overall_message}}</p>
-    <h3>Organizational Score: {{average_score_organization}}%</h3><p>{{overall_message_organization}}</p>
-    <h3>Solution Score: {{average_score_solution}}%</h3><p>{{overall_message_solution}}</p></div>
+    <h3>Overall Score: {{results_data["average_score"]}}%</h3><p>{{results_data["overall_message"]}}</p>
+    <h3>Organizational Score: {{results_data["average_score_organization"]}}%</h3><p>{{results_data["overall_message_organization"]}}</p>
+    <h3>Solution Score: {{results_data["average_score_solution"]}}%</h3><p>{{results_data["overall_message_solution"]}}</p></div>
 
     <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
     <script type="IN/Share" data-url="https://www.linkedin.com"></script>
 
     <div><h2>Get in Touch</h2>
-        <p>Need some help with {{experts[0]}}?</p>
-        <img src={{experts[1][5]}}>
-            <h3><a href="mailto:{{experts[1][1]}}?subject={{experts[0]}}">{{experts[1][0]}}</a></h3>
-            <h5>{{experts[1][2]}}</h5>
-            <p>{{experts[1][3]}}</p>
+        <p>Need some help with {{results_data["experts"][0]}}?</p>
+        <img class="profile-pic" src={{results_data["experts"][1][5]}}>
+            <h3><a href="mailto:{{results_data["experts"][1][1]}}?subject={{results_data["experts"][0]}}">{{results_data["experts"][1][0]}}</a></h3>
+            <h5>{{results_data["experts"][1][2]}}</h5>
+            <p>{{results_data["experts"][1][3]}}</p>
             
-            <img src={{experts[2][5]}}>
+            <img class="profile-pic" src={{results_data["experts"][2][5]}}>
             
-            <h3><a href="mailto:{{experts[2][1]}}?subject={{experts[0]}}">{{experts[2][0]}}</a></h3>
-            <h5>{{experts[2][2]}}</h5>
-            <p>{{experts[2][3]}}</p>
+            <h3><a href="mailto:{{results_data["experts"][2][1]}}?subject={{results_data["experts"][0]}}">{{results_data["experts"][2][0]}}</a></h3>
+            <h5>{{results_data["experts"][2][2]}}</h5>
+            <p>{{results_data["experts"][2][3]}}</p>
         </div>
     <!-- # topic = experts[0]
     # leader = experts[1]

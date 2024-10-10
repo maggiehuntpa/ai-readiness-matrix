@@ -45,8 +45,7 @@
     -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
     grid-column: 2; 
-    width: 100%; 
-
+    width: 30vw; 
 
   height: 20px;
   background: var(--pa-steel) 

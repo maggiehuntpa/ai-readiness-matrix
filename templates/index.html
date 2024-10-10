@@ -24,7 +24,7 @@
                     d="M32.177 10.433a4.347 4.347 0 1 0 0-8.695 4.347 4.347 0 0 0 0 8.695ZM38.778 13.99a2.35 2.35 0 1 0 0-4.701 2.35 2.35 0 0 0 0 4.7ZM39.825 7.458a1.371 1.371 0 1 0 0-2.743 1.371 1.371 0 0 0 0 2.743Z"
                 />
             </svg>
-            <span class="ms-2">ATC Management Tool</span>
+            <span class="ms-2">AI Readiness Matrix</span>
         </a>
         <!-- responsive toggle button -->
         <button
@@ -62,37 +62,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                </li>
-                <!-- dropdown -->
-                <li class="nav-item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                    >
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li>
-                            <a class="dropdown-item" href="#">Another action</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider" />
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </li>
-                    </ul>
+                <li class="nav-item"></li>
+                    <a class="nav-link" aria-current="page" href="https://www.paconsulting.com/" target="_blank">PA Consulting</a>
                 </li>
             </ul>
         </div>
@@ -165,8 +138,12 @@
             <div class="sliderlabel">{{questions_list.10[3]}}</div>
         </div></div>
 
-        <label for="email">Enter your email to receive a pdf report</label><br>
-        <input type="text" id="email" name="email">
+        <label for="email">Enter your email to receive a pdf report and<br>check the checkboxes to join our mailing list or receive a follow-up email</label><br>
+        <input type="text" id="name" name="name" placeholder="name">
+        <input type="text" id="email" name="email" placeholder="email">
+        <input type="checkbox" id="mailing_list" name="mailing_list">
+        <input type="checkbox" id="follow_up" name="follow_up">
+        <input type="text" id="comments" name="comments" placeholder="comments">
         <input class="submit-button" type="submit" value="Submit">
     </form>
     <script src="js/pa-ignite.js"></script>
