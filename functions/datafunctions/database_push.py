@@ -1,5 +1,7 @@
+import datetime
 from flask import request
-
+from google.cloud import bigquery
+client = bigquery.Client()
 from functions.userinterfacefunctions.scoring import Scoring as sc
 
 
@@ -37,14 +39,43 @@ class DatabasePush:
 
         # todo: json / columns
 
-    def create_db_object():
-        # todo: json / columns
+    def create_db_row(data, email, scores):
 
-        db_object = {}
+        #generate id
+        id = ""
+        timestamp = datetime.now()
+        name = data.name
+        comments = data.comments
+        mailing_list = data.mailing_list
+        follow_up = data.follow_up
+        experts_recommended = data.experts_recommended
+        worst_score = sc.worst_question(scores)
+        weakest_area = worst_score[1] #todo: verify
+        strongest_area = data.strongest_area
+       
+        db_list = []
+        db_list.append(id, timestamp, name, email)
 
-        return db_object
+        for s in scores:
+            db_list.append(s)
 
-    def push_responses():
-        # todo pushg to db
+        
+
+        db_list.append(sc.average_score_organization, sc.average_score_solution, sc.average_score, comments, mailing_list, follow_up, experts_recommended, weakest_area, strongest_area)
+
+
+         # columns:
+        # (response_id, timestamp, responder_name, responder_email, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, org_score,
+        # solution_score, overall_score, comments, mailing_list, follow_up, experts_recommended, weakest_area, strongest_area) {db_list}"
+        
+        return db_list
+
+    def push_responses(db_list):
+        
+        push_query_SQL = f"INSERT INTO `ai-readiness-matrix.matrixdata.results` 
+        (response_id, timestamp, responder_name, responder_email, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, org_score,
+        solution_score, overall_score, comments, mailing_list, follow_up, experts_recommended, weakest_area, strongest_area) {db_list}"
+        push_query_job = client.query(push_query_SQL)
+        print(push_query_job)
 
         return "ok"

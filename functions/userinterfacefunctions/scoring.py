@@ -33,12 +33,15 @@ class Scoring():
         return average_score_solution, overall_message_solution
     
     def worst_question(scores):
-        worst_score_q = str(scores.index(min(scores))+1) 
-        return worst_score_q
+        worst_score_q_no = str(scores.index(min(scores))+1) 
+        worst_score_q_str = str(db.pull_questions()[worst_score_q_no][1])
+        print(worst_score_q_str)
+        return worst_score_q_no, worst_score_q_str
     
     def experts(scores):
         #todo - top 2 experts for lowest scores, add to content
-        worst_question = Scoring.worst_question(scores)
+        worst_question = Scoring.worst_question(scores)[0]
+        print(worst_question)
         experts = db.pull_topic_contacts(worst_question)
         experts[0] = experts[0].title()
         # topic = experts[0]
