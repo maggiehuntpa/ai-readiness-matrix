@@ -38,6 +38,12 @@ class Scoring():
         print(worst_score_q_str)
         return worst_score_q_no, worst_score_q_str
     
+    def best_question(scores):
+        best_score_q_no = str(scores.index(max(scores))+1) 
+        best_score_q_str = str(db.pull_questions()[best_score_q_no][1])
+        print(best_score_q_str)
+        return best_score_q_no, best_score_q_str
+    
     def experts(scores):
         #todo - top 2 experts for lowest scores, add to content
         worst_question = Scoring.worst_question(scores)[0]

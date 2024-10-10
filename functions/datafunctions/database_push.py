@@ -3,7 +3,7 @@ from flask import request
 from google.cloud import bigquery
 client = bigquery.Client()
 from functions.userinterfacefunctions.scoring import Scoring as sc
-
+import uuid
 
 class DatabasePush:
 
@@ -26,7 +26,6 @@ class DatabasePush:
 
         scores = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10]
 
-        # todo: json / columns
 
         return scores
 
@@ -37,21 +36,20 @@ class DatabasePush:
 
         return avg_all, avg_org, avg_sol
 
-        # todo: json / columns
 
-    def create_db_row(data, email, scores):
+    def create_db_row(email, scores):
+        
 
-        #generate id
-        id = ""
+        data = request.form
+        id = uuid.uuid4() 
         timestamp = datetime.now()
-        name = data.name
-        comments = data.comments
-        mailing_list = data.mailing_list
-        follow_up = data.follow_up
-        experts_recommended = data.experts_recommended
-        worst_score = sc.worst_question(scores)
-        weakest_area = worst_score[1] #todo: verify
-        strongest_area = data.strongest_area
+        name = data['name']
+        comments = data['comments']
+        mailing_list = data['mailing_list']
+        follow_up = data['follow_up']
+        experts_recommended = ['experts_recommended']
+        weakest_area = sc.worst_question(scores)[1] #todo: verify
+        strongest_area = sc.best_question(scores)[1]
        
         db_list = []
         db_list.append(id, timestamp, name, email)
@@ -63,7 +61,7 @@ class DatabasePush:
 
         db_list.append(sc.average_score_organization, sc.average_score_solution, sc.average_score, comments, mailing_list, follow_up, experts_recommended, weakest_area, strongest_area)
 
-
+        print(db_list)
          # columns:
         # (response_id, timestamp, responder_name, responder_email, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, org_score,
         # solution_score, overall_score, comments, mailing_list, follow_up, experts_recommended, weakest_area, strongest_area) {db_list}"
