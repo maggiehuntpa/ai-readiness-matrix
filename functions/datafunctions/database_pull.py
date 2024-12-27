@@ -29,14 +29,14 @@ class DatabasePull():
         expert_results=expert_query_job.result()
         experts_dict = {}
         for e in expert_results:
-            experts_dict[e[0]] = [e[1], e[2], e[3], e[4], e[5], e[6]]
+            experts_dict[e[0]] = [e[1], e[2], e[3], e[4], e[5]]
 
         return experts_dict
     
 
     def pull_topic_contacts(weakest_q):
         experts_dict = DatabasePull.pull_experts()
-        topics_query_SQL = f"{gcloud_project_query_start}topics`"
+        topics_query_SQL = f"{gcloud_project_query_start}question_experts`"
         topics_query_job = client.query(topics_query_SQL)
         topics_results = topics_query_job.result()
 

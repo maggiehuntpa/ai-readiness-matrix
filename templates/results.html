@@ -24,7 +24,7 @@
                     d="M32.177 10.433a4.347 4.347 0 1 0 0-8.695 4.347 4.347 0 0 0 0 8.695ZM38.778 13.99a2.35 2.35 0 1 0 0-4.701 2.35 2.35 0 0 0 0 4.7ZM39.825 7.458a1.371 1.371 0 1 0 0-2.743 1.371 1.371 0 0 0 0 2.743Z"
                 />
             </svg>
-            <span class="ms-2 header-div">AI Readiness Matrix</span>
+            <span class="ms-2">AI Readiness Matrix</span>
         </a>
         <!-- responsive toggle button -->
         <button
@@ -78,8 +78,11 @@
     <h3>Organizational Score: {{results_data["average_score_organization"]}}%</h3><p>{{results_data["overall_message_organization"]}}</p>
     <h3>Solution Score: {{results_data["average_score_solution"]}}%</h3><p>{{results_data["overall_message_solution"]}}</p></div>
 
-    <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
-    <script type="IN/Share" data-url="https://www.linkedin.com"></script>
+    <form action="/share" method="post"><input class="submit-button" type="submit" value="Share"></form>
+
+<!-- 
+   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+    <script type="IN/Share" data-url="https://www.linkedin.com"> -->
 
     <div><h2>Get in Touch</h2>
         <p>Need some help with {{results_data["experts"][0]}}?</p>

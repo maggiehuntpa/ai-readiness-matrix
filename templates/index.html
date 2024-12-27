@@ -145,13 +145,16 @@
             </div>
         </div>
 
-        <div class="end-of-form-q"><label for="email">Enter your email to receive a pdf report</label>
-            <input type="text" id="email" name="email" placeholder="email">
+        <div class="end-of-form-q"><label for="email">Enter your email to receive a pdf report and be added to our mailing list</label>
+            <input type="text" id="email" name="email" placeholder="email" required>
         </div>
         <div class="end-of-form-q"><label for="follow_up">Check the box for one of our experts to contact you about your
                 results.</label>
-            <input type="checkbox" id="follow_up" name="follow_up">
+            <input type="checkbox" id="follow_up" name="follow_up" checked>
         </div>
+        <div class="end-of-form-q" hidden><label for="mailing_list">Check the box to be added to our mailing list.</label>
+        <input type="checkbox" id="mailing_list" name="mailing_list" checked>
+    </div>
         <div class="end-of-form-q"><label for="comments">Would you like to add any comments?</label>
             <input type="text" id="comments" name="comments" placeholder="comments">
         </div>

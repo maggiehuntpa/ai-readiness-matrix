@@ -46,8 +46,8 @@ class DatabasePush:
         email = DatabasePush.get_email(data) 
         scores = DatabasePush.get_results_for_db(data)
         comments = data['comments']
-        mailing_list = True if data['mailing_list'] == "on" else False
-        follow_up = True if data['follow_up'] == "on" else False
+        mailing_list = True if data.get('mailing_list') == "on" else False
+        follow_up = True if data.get('follow_up') == "on" else False
         experts_recommended = str(sc.experts(scores)[1][0] + ", " + sc.experts(scores)[2][0])
         weakest_area = sc.worst_question(scores)[1]
         strongest_area = sc.best_question(scores)[1]

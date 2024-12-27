@@ -1,7 +1,7 @@
 from flask import (
     Flask,
     render_template,
-    request
+    request, session
 ) 
 import json
 import os
@@ -13,7 +13,7 @@ from functions.datafunctions.database_push import DatabasePush as dp
 from functions.userinterfacefunctions import scoring as sc, datavisualisation as dv, process_responses as proc, resultsdoc as rd
 
 app = Flask("ai-readiness") 
-
+app.secret_key = os.urandom(24)  
 
 # index - quiz
 @app.route("/")
@@ -30,15 +30,15 @@ def results():
     data = request.form
     dp.push_responses(data)
     
-    scores = proc.ProcessResponses.process_responses()
-    print(scores)
+    session['scores'] = proc.ProcessResponses.process_responses()
+    print(session['scores'])
 
-    average_score, overall_message = sc.Scoring.average_score(scores)
-    average_score_solution, overall_message_solution = sc.Scoring.average_score_solution(scores)
-    average_score_organization, overall_message_organization = sc.Scoring.average_score_organization(scores)
+    average_score, overall_message = sc.Scoring.average_score(session['scores'])
+    average_score_solution, overall_message_solution = sc.Scoring.average_score_solution(session['scores'])
+    average_score_organization, overall_message_organization = sc.Scoring.average_score_organization(session['scores'])
     
-    graph = dv.DataVisualisaton.plot_chart(scores)
-    experts = sc.Scoring.experts(scores)
+    graph = dv.DataVisualisaton.plot_chart(session['scores'])
+    experts = sc.Scoring.experts(session['scores'])
          # topic = experts[0]
         # leader = experts[1]
         # supporter = experts[2]
@@ -47,17 +47,36 @@ def results():
         
     doc = "" #rd.ResultsDoc()
     results_data = {
-        "average_score" : average_score,
-        "overall_message" : overall_message,
-        "average_score_organization" : average_score_organization,
-        "overall_message_organization" : overall_message_organization,
-        "average_score_solution" : average_score_solution,
-        "overall_message" : overall_message,
-        "experts" : experts
-
+        "average_score": average_score,
+        "overall_message": overall_message,
+        "average_score_organization": average_score_organization,
+        "overall_message_organization": overall_message_organization,
+        "average_score_solution": average_score_solution,
+        "overall_message_solution": overall_message_solution,
+        "experts": experts
     }
-    return render_template('results.html', graph=graph, 
-                           results_data=results_data)
+
+    session['score'] = average_score
+
+    return render_template('results.html', graph=graph, results_data=results_data)
+
+
+
+# results shareable
+@app.route("/share", methods=['POST'])
+def share():
+
+    graph = graph = dv.DataVisualisaton.plot_chart(session.get('scores'))
+    score = session.get('score')
+
+    if graph and score:
+        print('Sharing results')
+        return render_template('result_share.html', graph=graph, score=score)
+    else:
+
+        print('No results found in session')
+
+
 
 # about
 @app.route("/about")
